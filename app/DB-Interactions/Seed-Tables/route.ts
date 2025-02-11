@@ -49,6 +49,7 @@ export async function GET() {
         //If there is an error, call sql'ROLLBACK' to undo attempt
         await client.sql`ROLLBACK`;
 
+        //Return `${error}` in json string
         return Response.json(`${error}`);
     }
 } 
