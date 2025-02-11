@@ -22,7 +22,7 @@ async function seedCardDataTable() {
         //'map()' function iterates over given data and does something for each one.
         // 
         homeCards.map((card) => client.sql`
-            INSERT INTO card_data VALUES (${card.id}, ${card.title}, ${card.description}, ${card.message}, ${card.imgLink}, ${card.buttonLink}, ${card.buttonText}),
+            INSERT INTO card_data VALUES (${card.id}, ${card.title}, ${card.description}, ${card.message}, ${card.imgLink}, ${card.buttonLink}, ${card.buttonText})
             ON CONFLICT (id) DO NOTHING;
     `,
         ),
