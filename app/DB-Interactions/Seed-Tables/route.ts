@@ -7,7 +7,8 @@ const client = await db.connect();
 
 async function seedCardDataTable() {
     //Use 'client.sql' to query database: Create table for homecarddata with columns matching data type 'Card', Store 
-    const cards = await client.sql`CREATE TABLE IF NOT EXISTS card_data (
+    await client.sql`
+    CREATE TABLE IF NOT EXISTS card_data (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,

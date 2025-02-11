@@ -8,7 +8,7 @@ export default function Page() {
         <BlueMessage title="Python" message="Learn about Python one of the world's most popular programming languages to create digital art, interactive images and models."/>
               <div className="w-full h-full flex flex-col justify-center md:flex-row">
                 {pythonCards.map((el) => {
-                  return <Card key={el.id} buttonLink={el.buttonLink} buttonText={el.title} desc={el.desc} imgLink={el.imgLink} title={el.title} message={el.message} />
+                  return <Card key={el.id} buttonLink={el.buttonLink} buttonText={el.title} description={el.description} imgLink={el.imgLink} title={el.title} message={el.message} />
                 })}
               </div>
         </div>
