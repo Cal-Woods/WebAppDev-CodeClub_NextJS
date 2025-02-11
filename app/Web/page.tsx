@@ -1,5 +1,5 @@
 import { BlueMessage } from "../ui/blueMessage";
-import { webCards } from "@/public/Data/cards";
+import { webCards } from "@/public/DB-Data/cards";
 import Card from "../ui/card";
 
 export default function Page() {

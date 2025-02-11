@@ -1,6 +1,6 @@
 import { BlueMessage } from "./ui/blueMessage";
 import Card from "./ui/card";
-import { homeCards } from "@/public/Data/cards";
+import { homeCards } from "@/public/DB-Data/cards";
 import { ChristmasWindow } from "./ui/christmasWindow";
 
 export default function Page() {

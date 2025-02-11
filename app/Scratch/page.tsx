@@ -1,5 +1,5 @@
 import { BlueMessage } from "../ui/blueMessage";
-import { scratchCards } from "@/public/Data/cards";
+import { scratchCards } from "@/public/DB-Data/cards";
 import Card from "../ui/card";
 
 export default function Page() {
