@@ -1,2 +1,2 @@
 # Bio
-A nextjs project where I had to recreate a previous Web Applications Development project, a static html website that included javascript & css styles, in a NextJS environment.
+A nextjs project where I had to recreate a previous Web Applications Development project, Used to be a static html website that included javascript & css styles, now a NextJS environment.
