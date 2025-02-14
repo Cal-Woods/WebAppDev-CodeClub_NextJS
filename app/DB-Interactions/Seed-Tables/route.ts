@@ -1,5 +1,5 @@
 
-import { homeCards } from "@/public/DB-Data/cards";
+import { cards } from "@/public/DB-Data/cards";
 import { db } from "@vercel/postgres";
 
 //Declare constant variable for db connection
@@ -22,7 +22,7 @@ async function seedCardDataTable() {
     const insertedCards = await Promise.all(
         //'map()' function iterates over given data and does something for each one.
         // 
-        homeCards.map((card) => client.sql`
+        cards.map((card) => client.sql`
             INSERT INTO card_data VALUES (${card.id}, ${card.title}, ${card.description}, ${card.message}, ${card.imgLink}, ${card.buttonLink}, ${card.buttonText})
             ON CONFLICT (id) DO NOTHING;
     `,
