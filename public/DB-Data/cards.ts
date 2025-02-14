@@ -1,5 +1,5 @@
 
-export const homeCards = [
+export const cards = [
     {
         id:"HC1",
         title:"Scratch",
