@@ -11,8 +11,8 @@ async function seedCardDataTable() {
     CREATE TABLE IF NOT EXISTS card_data (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    message VARCHAR(255) NOT NULL,
+    description VARCHAR(512) NOT NULL,
+    message VARCHAR(512) NOT NULL,
     imgLink VARCHAR(255) NOT NULL,
     buttonLink VARCHAR(255) NOT NULL,
     buttonText VARCHAR(255) NOT NULL
