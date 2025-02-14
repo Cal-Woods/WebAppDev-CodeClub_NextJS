@@ -27,13 +27,10 @@ export const homeCards = [
         buttonLink:"/Web",
         buttonText:"Explore Web Projects"
     },
-];
-
-export const scratchCards = [
     {
         id:"SC1",
         title:"Introduction to Scratch",
-        description:"A purple background with stars, a planet with a ring around it & a moon, followed by a person with an idea holding a red book, a green cactus and an orange anthropomorphised cat on the left of the image.",
+        description:"A purple background with stars, a planet with a ring around it & a moon, followed by a person with an idea holding a red book, a green cactus and an orange cat.",
         message:"Learn sprites, scripts & loops in this introduction to coding in Scratch for beginners, you will learn to add code, costumes & sounds to sprites as you make animations, a game, an app & a book",
         imgLink:"/Images/scratch-intro.webp",
         buttonLink:"#",
@@ -57,9 +54,6 @@ export const scratchCards = [
         buttonLink:"#",
         buttonText:"Not in use"
     },
-];
-
-export const pythonCards = [
     {
         id:"P1",
         title:"Introduction to Python",
@@ -78,9 +72,6 @@ export const pythonCards = [
         buttonLink:"#",
         buttonText:"Not in use"
     },
-];
-
-export const webCards = [
     {
         id:"W1",
         title:"Introduction to Web\nHTML, CSS & Animations",
