@@ -36,3 +36,17 @@ export async function fetchScratchCardData() {
         throw new Error("Could not fetch card data!");
     }
 }
+
+export async function fetchPythonCardData() {
+    //Try to fetch data from the db
+    try {
+        const data = await sql<cardData>`SELECT * FROM card_data WHERE id ILIKE 'PC_'`; 
+
+        return data.rows;
+    }
+    //Catch a possible error
+    catch(error) {
+        console.error('Database Error:', error);
+        throw new Error("Could not fetch card data!");
+    }
+}
