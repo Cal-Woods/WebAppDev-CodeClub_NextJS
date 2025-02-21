@@ -1,5 +1,4 @@
 import { BlueMessage } from "../ui/blueMessage";
-import { scratchCards } from "@/public/DB-Data/cards";
 import Card from "../ui/card";
 
 export default function Page() {
@@ -7,9 +6,9 @@ export default function Page() {
             <div className="w-full h-fit">
               <BlueMessage title="Scratch" message="Begin your adventure in digital making, by learning to code animations, stories and games in Scratch."/>
               <div className="w-full h-full flex flex-col justify-center md:flex-row">
-                {scratchCards.map((el) => {
+                {/*scratchCards.map((el) => {
                   return <Card key={el.id} buttonLink={el.buttonLink} buttonText={el.title} description={el.description} imgLink={el.imgLink} title={el.title} message={el.message} />
-                })}
+                })*/}
               </div>
             </div>
     );

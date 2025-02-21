@@ -1,10 +1,10 @@
-import { cardProps } from '@/public/PropTypes/types';
+import { cardData } from '@/public/PropTypes/types';
 import {sql} from '@vercel/postgres';
 
 export async function fetchHomeCardData() {
     //Try to fetch data from the db
     try {
-        const data = await sql<cardProps>`SELECT * FROM card_data WHERE id ILIKE 'HC_'`; 
+        const data = await sql<cardData>`SELECT * FROM card_data WHERE id ILIKE 'HC_'`; 
 
         return data.rows;
     }
