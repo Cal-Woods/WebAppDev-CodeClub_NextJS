@@ -55,7 +55,7 @@ export const cards = [
         buttonText:"Not in use"
     },
     {
-        id:"P1",
+        id:"PC1",
         title:"Introduction to Python",
         description:"A purple starry background with a woman skating in the center of the image, surrounded by a target with an arrow in the center, a yellow smiley face, two snowflakes, an orange tiger face and a rocket.",
         message:"Variables, Functions, and Loops.",
@@ -64,7 +64,7 @@ export const cards = [
         buttonText:"Not in use"
     },
     {
-        id:"P2",
+        id:"PC2",
         title:"More Python\nlists..dictionaries, and data",
         description:"A robot painting some mountains centers this image, with a map in the top-left corner, A woman smiling with a small padlock floating beside her, and a lightbulb in a maze in the top-right corner.",
         message:"More Python moves beyond the basics introduced in 'Introduction to Python'. You will learn to use lists, dictionaries, and files to create charts, models, and network.",
@@ -73,7 +73,7 @@ export const cards = [
         buttonText:"Not in use"
     },
     {
-        id:"W1",
+        id:"WC1",
         title:"Introduction to Web\nHTML, CSS & Animations",
         description:"A robot painting some mountains centers this image, with a map in the top-left corner, A woman smiling with a small padlock floating beside her, and a lightbulb in a maze in the top-right corner.",
         message:"In this introduction to Web Design for beginners, you will learn how to add structure, and style webpages with images, lists, fonts, quotes,links & animations.",
@@ -82,7 +82,7 @@ export const cards = [
         buttonText:"Not in use"
     },
     {
-        id:"W2",
+        id:"WC2",
         title:"More Web",
         description:"A white question mark with an aqua blue border, with a hamburger menu symbol in the top-right corner, a small card showing Wonder Woman, a picture of a penguin and a snail on the left-hand side.",
         message:"More web moves beyond the basics introduced in 'Introduction to Web'. Modern web design has turned websites from static and boring walls of information into ways of providing fun and engaging experiences to a user. Take users on a journey and transport them to somewhere completely new!",
