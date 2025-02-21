@@ -5,7 +5,6 @@ import Card from "./ui/card";
 //Import function to get data from database
 import { fetchHomeCardData } from "./DB-Interactions/Fetch-Tables/data";
 
-import { cardProps } from "@/public/PropTypes/types";
 import { ChristmasWindow } from "./ui/christmasWindow";
 
 export default async function Page() {
