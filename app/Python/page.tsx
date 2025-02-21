@@ -1,15 +1,17 @@
+import { fetchScratchCardData } from "../DB-Interactions/Fetch-Tables/data";
 import { BlueMessage } from "../ui/blueMessage";
 import Card from "../ui/card";
 
-export default function Page() {
-    return (
-        <div>
-        <BlueMessage title="Python" message="Learn about Python one of the world's most popular programming languages to create digital art, interactive images and models."/>
-              <div className="w-full h-full flex flex-col justify-center md:flex-row">
-                {/*{pythonCards.map((el) => {
-                  return <Card key={el.id} buttonLink={el.buttonLink} buttonText={el.title} description={el.description} imgLink={el.imgLink} title={el.title} message={el.message} />
-                })}*/}
-              </div>
+export default async function Page() {
+  const data = await fetchScratchCardData();
+  //Store 'fetchScratchCardData' ^ data
+
+  return (
+      <div>
+      <BlueMessage title="Python" message="Learn about Python one of the world's most popular programming languages to create digital art, interactive images and models."/>
+        <div className="w-full h-full flex flex-col justify-center md:flex-row">
+          {data.map((el) => {return <Card key={el.id} description={el.description} message={el.message} imglink={el.imglink} buttonlink={el.buttonlink} buttontext={el.buttontext} title={el.title} />})}
         </div>
-    )
+      </div>
+  );
 }
