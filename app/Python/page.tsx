@@ -1,9 +1,9 @@
-import { fetchScratchCardData } from "../DB-Interactions/Fetch-Tables/data";
+import { fetchPythonCardData } from "../DB-Interactions/Fetch-Tables/data";
 import { BlueMessage } from "../ui/blueMessage";
 import Card from "../ui/card";
 
 export default async function Page() {
-  const data = await fetchScratchCardData();
+  const data = await fetchPythonCardData();
   //Store 'fetchScratchCardData' ^ data
 
   return (
