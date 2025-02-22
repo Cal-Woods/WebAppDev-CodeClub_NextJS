@@ -15,7 +15,8 @@ export async function fetchHomeCardData() {
     //Catch a possible error
     catch(error) {
         console.error('Database Error:', error);
-        throw new Error("Could not fetch card data!");
+        
+        return null;
     }
 }
 
@@ -33,7 +34,8 @@ export async function fetchScratchCardData() {
     //Catch a possible error
     catch(error) {
         console.error('Database Error:', error);
-        throw new Error("Could not fetch card data!");
+        
+        return null;
     }
 }
 
@@ -47,6 +49,21 @@ export async function fetchPythonCardData() {
     //Catch a possible error
     catch(error) {
         console.error('Database Error:', error);
-        throw new Error("Could not fetch card data!");
+        return null;
+    }
+}
+
+export async function fetchWebCardData() {
+    //Try to fetch data from the db
+    try {
+        const data = await sql<cardData>`SELECT * FROM card_data WHERE id ILIKE 'WC_'`; 
+
+        return data.rows;
+    }
+    //Catch a possible error
+    catch(error) {
+        console.error('Database Error:', error);
+        
+        return null;
     }
 }
