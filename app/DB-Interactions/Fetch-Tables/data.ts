@@ -14,8 +14,6 @@ export async function fetchHomeCardData() {
     }
     //Catch a possible error
     catch(error) {
-        console.error('Database Error:', error);
-        
         return null;
     }
 }
@@ -33,8 +31,6 @@ export async function fetchScratchCardData() {
     }
     //Catch a possible error
     catch(error) {
-        console.error('Database Error:', error);
-
         return null;
     }
 }
@@ -48,8 +44,6 @@ export async function fetchPythonCardData() {
     }
     //Catch a possible error
     catch(error) {
-        console.error('Database Error:', error);
-
         return null;
     }
 }
@@ -63,8 +57,6 @@ export async function fetchWebCardData() {
     }
     //Catch a possible error
     catch(error) {
-        console.error('Database Error:', error);
-
         return null;
     }
 }
