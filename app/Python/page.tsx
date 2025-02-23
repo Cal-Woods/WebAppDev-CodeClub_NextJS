@@ -4,8 +4,11 @@ import Card from "../ui/card";
 
 export default async function Page() {
   const data = await fetchPythonCardData();
-  //Store 'fetchScratchCardData' ^ data
+  //Store 'fetchPythonCardData' ^ data
 
+  //Check if data is empty
+  if(data == null) return(<p>There is no card data to show!</p>);
+  
   return (
       <div>
       <BlueMessage title="Python" message="Learn about Python one of the world's most popular programming languages to create digital art, interactive images and models."/>

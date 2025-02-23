@@ -11,6 +11,9 @@ export default async function Page() {
   const data = await fetchHomeCardData();
   //Store 'fetchHomeCardData() function ^ to get db carddata
 
+  //Check if data is null
+  if(data == null) return(<p>There is no card data to show!</p>);
+  
   return (
     <div className="w-full h-fit">
       <BlueMessage title="Learn to code with Codeclub" message="Our projects have step-by-step instructions to teach you how to create games, animations, and much more. Choose from hundreds of options, in up to 30 languages."/>
