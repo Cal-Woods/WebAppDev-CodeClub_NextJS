@@ -1,4 +1,4 @@
-import { fetchWebCardData } from "../DB-Interactions/Fetch-Tables/data";
+import { fetchWebCardData } from "../../public/DB-Data/Fetch-Cards/data";
 import { BlueMessage } from "../ui/blueMessage";
 import Card from "../ui/card";
 

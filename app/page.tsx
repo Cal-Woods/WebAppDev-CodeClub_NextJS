@@ -3,7 +3,7 @@ import Card from "./ui/card";
 //import { cards } from "@/public/DB-Data/cards";
 
 //Import function to get data from database
-import { fetchHomeCardData } from "./DB-Interactions/Fetch-Tables/data";
+import { fetchHomeCardData } from "../public/DB-Data/Fetch-Cards/data";
 
 import { ChristmasWindow } from "./ui/christmasWindow";
 
