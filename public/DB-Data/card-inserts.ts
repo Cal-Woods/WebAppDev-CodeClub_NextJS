@@ -1,4 +1,3 @@
-
 export const cards = [
     {
         id:"HC1",
@@ -89,5 +88,29 @@ export const cards = [
         imgLink:"/Images/more-web.webp",
         buttonLink:"#",
         buttonText:"Not in use"
+    }
+];
+
+//'menuData' array using 'menu' type from 'app/public/Inserts'
+export const menuData = [
+    {
+        id:"Entry1",
+        title:"Home",
+        link:"/"
+    },
+    {
+        id:"Entry2",
+        title:"Scratch",
+        link:"/Scratch"
+    },
+    {
+        id:"Entry3",
+        title:"Python",
+        link:"/Python"
+    },
+    {
+        id:"Entry4",
+        title:"Web",
+        link:"/Web"
     }
 ];
