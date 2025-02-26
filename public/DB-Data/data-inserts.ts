@@ -112,5 +112,10 @@ export const menuData = [
         id:"Entry4",
         title:"Web",
         link:"/Web"
+    },
+    {
+        id:"Entry5",
+        title:"FOR DATABASE ADMINS ONLY!",
+        link:"/DB-Interactions/Seed-Tables"
     }
 ];
