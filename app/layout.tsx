@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { CCLgMenu, CCSmallMenu } from "./ui/adaptiveMenu";
 import Image from "next/image";
 import "./globals.css";
-import { menuData } from "@/public/DB-Data/card-inserts";
+import { menuData } from "@/public/DB-Data/data-inserts";
 import { menu } from "@/public/PropTypes/types";
 
 const geistSans = Geist({
