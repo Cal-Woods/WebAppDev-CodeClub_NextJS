@@ -1,5 +1,5 @@
 
-import { cards, menuData } from "@/public/DB-Data/card-inserts";
+import { cards, menuData } from "@/public/DB-Data/data-inserts";
 import { db } from "@vercel/postgres";
 
 //Declare constant variable for db connection
