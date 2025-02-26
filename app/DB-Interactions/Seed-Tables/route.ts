@@ -46,7 +46,7 @@ async function seedMenuDataTable() {
     CREATE TABLE IF NOT EXISTS menu_data (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    link VARCHAR(255) NOT NULL
+    link VARCHAR(255) NOT NULL UNIQUE
     );`;
 
     //Storing an array with menu data in 'insertedMenuEntries'
