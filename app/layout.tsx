@@ -4,7 +4,6 @@ import { CCLgMenu, CCSmallMenu } from "./ui/adaptiveMenu";
 import Image from "next/image";
 import "./globals.css";
 import { menuData } from "@/public/DB-Data/data-inserts";
-import { menu } from "@/public/PropTypes/types";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
