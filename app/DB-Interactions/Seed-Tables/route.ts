@@ -14,6 +14,7 @@ async function seedCardDataTable() {
     await client.sql`
     CREATE TABLE IF NOT EXISTS card_data (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
+    pos NUMERIC(2,0) NOT NULL UNIQUE,
     title VARCHAR(255) NOT NULL,
     description VARCHAR(512) NOT NULL,
     message VARCHAR(512) NOT NULL,
@@ -27,7 +28,7 @@ async function seedCardDataTable() {
         //'map()' function iterates over given data and does something for each one.
         // 
         cards.map((card) => client.sql`
-            INSERT INTO card_data VALUES (${card.id}, ${card.title}, ${card.description}, ${card.message}, ${card.imgLink}, ${card.buttonLink}, ${card.buttonText})
+            INSERT INTO card_data VALUES (${card.id}, ${card.pos}, ${card.title}, ${card.description}, ${card.message}, ${card.imgLink}, ${card.buttonLink}, ${card.buttonText})
             ON CONFLICT (id) DO NOTHING;
     `,
         ),
