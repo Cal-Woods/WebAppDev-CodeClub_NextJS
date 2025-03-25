@@ -6,12 +6,7 @@ export const fakeUserCreds = [
     },
     {
         id:2,
-        username:"Cal",
+        username:"goslingp",
         password:"A_pA$54raSE_W0rtH_R3Membering"
     },
-    {
-        id:3,
-        username:"D00541789",
-        password:"Cam3$Le0N_889"
-    }
 ];
