@@ -87,18 +87,16 @@ async function seedUserInfoTable() {
 
     //Hash passwords
     const secrets = [await bcrypt.hashSync(userInfo[0].password, 13), await bcrypt.hashSync(userInfo[1].password, 13)];
-    var i = 0;
+    let i = 0;
     
     //Storing an array with user data in 'insertedUserEntries'
     const insertedUserEntries = await Promise.all(
         //'map()' function iterates over given data and does something for each one.
         // hash passwords
-        userInfo.map((entry) => {
-            client.sql`
+        userInfo.map((entry) => client.sql`
             INSERT INTO user_info (username, password, first_name, last_name, birth_date, email, account_type, primary_interest) VALUES (${entry.username}, ${secrets[i]}, ${entry.fName}, ${entry.lName}, ${entry.dob},${entry.email}, ${entry.accountType}, ${entry.interest})
-            ON CONFLICT (username) DO NOTHING;`;
-            i = i + 1;
-        }
+            ON CONFLICT (username) DO NOTHING;`,
+            i = i + 1,
         ),
     );
     
