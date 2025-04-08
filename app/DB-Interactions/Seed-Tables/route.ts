@@ -1,6 +1,8 @@
-
 import { cards, menuData } from "@/public/DB-Data/data-inserts";
 import { db } from "@vercel/postgres";
+import { userInfo } from "../(User-DB)/placeholder-user-info";
+import bcrypt from "bcryptjs";
+
 
 //Declare constant variable for db connection
 const client = await db.connect();
@@ -64,6 +66,46 @@ async function seedMenuDataTable() {
     return insertedMenuEntries;
 }
 
+/**
+ * Creates & seeds 'user_info' table in database.
+ * @returns Promise results of inserted user entries
+ */
+async function seedUserInfoTable() {
+    //Use 'client.sql' to query database: Create table for menu data with columns matching data type 'menuData'
+    await client.sql`
+    CREATE TABLE IF NOT EXISTS user_info (
+    id SERIAL NOT NULL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    birth_date date NOT NULL,
+    email VARCHAR(255) UNIQUE,
+    account_type VARCHAR(255) NOT NULL,
+    primary_interest VARCHAR(255) NOT NULL
+    );`;
+
+    //Hash passwords
+    const secrets = [await bcrypt.hashSync(userInfo[0].password, 13), await bcrypt.hashSync(userInfo[1].password, 13)];
+    var i = 0;
+    
+    //Storing an array with user data in 'insertedUserEntries'
+    const insertedUserEntries = await Promise.all(
+        //'map()' function iterates over given data and does something for each one.
+        // hash passwords
+        userInfo.map((entry) => {
+            client.sql`
+            INSERT INTO user_info (username, password, first_name, last_name, birth_date, email, account_type, primary_interest) VALUES (${entry.username}, ${secrets[i]}, ${entry.fName}, ${entry.lName}, ${entry.dob},${entry.email}, ${entry.accountType}, ${entry.interest})
+            ON CONFLICT (username) DO NOTHING;`;
+            i = i + 1;
+        }
+        ),
+    );
+    
+    return insertedUserEntries;
+}
+
+
 export async function GET() {
     //Initiate try-catch statement for interacting with database & catching errors
     try {
@@ -73,6 +115,8 @@ export async function GET() {
         await seedCardDataTable();
         //Call function 'seedMenuDataTable'
         await seedMenuDataTable();
+        //Call function seedUserInfoTable()
+        await seedUserInfoTable();
         //Run sql 'COMMIT' query
         await client.sql`COMMIT`;
 
@@ -87,4 +131,4 @@ export async function GET() {
         //Return `${error}` in json string
         return Response.json(`${error}`);
     }
-} 
+}
