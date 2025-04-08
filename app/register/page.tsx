@@ -7,7 +7,7 @@ export default function Page() {
 
         <div id="outer" className="w-[400px] md:w-[750px] lg:w-[1000px] h-fit border-black border-x-2 border-y-2 md:mt-4 m-auto clear-both bg-white align-middle text-black">
           <div id="inner" className="w-full m-auto text-center">
-            <form id="register" aria-label="Sign-up form.">
+            <form id="register" aria-label="Sign-up form" action="/registration" method="post">
               <fieldset className="border-2 border-dotted border-red-600">
                 <legend aria-label="Personal Details" className="text-lg font-semibold underline mt-2 m-auto">Personal Details</legend>
 
