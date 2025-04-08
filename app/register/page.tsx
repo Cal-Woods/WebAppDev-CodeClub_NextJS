@@ -37,6 +37,8 @@ export default function Page() {
                 <input type="text" name="user" id="user" className="w-[90%] mt-2 border-black border-2"></input> <br />
                 <label htmlFor="pass">Password</label> <br />
                 <input type="password" name="pass" id="pass" autoComplete="false" className="w-[90%] mt-2 border-black border-2"></input> <br />
+                <label htmlFor="repass">Re-type password</label> <br />
+                <input type="password" name="repass" id="repass" autoComplete="false" className="w-[90%] mt-2 border-black border-2"></input> <br />
               </fieldset>
 
               <button name="reg_Submit" type="submit" className="w-[90%] border-2 border-black bg-slate-400 hover:bg-white active:bg-cyan-200 active:text-black">Submit details</button>
