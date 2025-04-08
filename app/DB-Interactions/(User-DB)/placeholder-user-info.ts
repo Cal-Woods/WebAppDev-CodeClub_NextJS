@@ -1,6 +1,5 @@
 export const userInfo = [
     {
-        userId:1,
         username:"Admin",
         password:"password",
         fName:"Administrator",
@@ -11,7 +10,6 @@ export const userInfo = [
         interest:"Python"
     },
     {
-        userId:2,
         username:"goslingp",
         password:"A_pA$54raSE_W0rtH_R3Membering",
         fName:"Peter",
