@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 
 
 //Declare constant variable for db connection
-const client = await db.connect();
+export const client = await db.connect();
 
 /**
  * Creates & seeds the 'card_data' table in connected database.
@@ -86,20 +86,21 @@ async function seedUserInfoTable() {
     );`;
 
     //Hash passwords
-    const secrets = [await bcrypt.hashSync(userInfo[0].password, 13), await bcrypt.hashSync(userInfo[1].password, 13)];
-    let i = 0;
+    const secrets = [await bcrypt.hash(userInfo[0].password, 13), await bcrypt.hash(userInfo[1].password, 13)];
+    
     
     //Storing an array with user data in 'insertedUserEntries'
-    const insertedUserEntries = await Promise.all(
+    const insertedUserEntries = await Promise.all([
         //'map()' function iterates over given data and does something for each one.
         // hash passwords
-        userInfo.map((entry) => client.sql`
-            INSERT INTO user_info (username, password, first_name, last_name, birth_date, email, account_type, primary_interest) VALUES (${entry.username}, ${secrets[i]}, ${entry.fName}, ${entry.lName}, ${entry.dob},${entry.email}, ${entry.accountType}, ${entry.interest})
+        client.sql`
+            INSERT INTO user_info (username, password, first_name, last_name, birth_date, email, account_type, primary_interest) VALUES (${userInfo[0].username}, ${secrets[0]}, ${userInfo[0].fName}, ${userInfo[0].lName}, ${userInfo[0].dob},${userInfo[0].email}, ${userInfo[0].accountType}, ${userInfo[0].interest})
             ON CONFLICT (username) DO NOTHING;`,
-            i = i + 1,
-        ),
-    );
-    
+        client.sql`
+            INSERT INTO user_info (username, password, first_name, last_name, birth_date, email, account_type, primary_interest) VALUES (${userInfo[1].username}, ${secrets[1]}, ${userInfo[1].fName}, ${userInfo[1].lName}, ${userInfo[1].dob},${userInfo[1].email}, ${userInfo[1].accountType}, ${userInfo[1].interest})
+            ON CONFLICT (username) DO NOTHING;`,
+    ])
+
     return insertedUserEntries;
 }
 
