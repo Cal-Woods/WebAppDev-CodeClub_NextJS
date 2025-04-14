@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 
 
 //Declare constant variable for db connection
-export const client = await db.connect();
+const client = await db.connect();
 
 /**
  * Creates & seeds the 'card_data' table in connected database.
