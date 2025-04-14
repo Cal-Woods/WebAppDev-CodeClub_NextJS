@@ -1,5 +1,6 @@
 import { handleSignUp } from "../(form-processing)/registration/actions";
 import { BlueMessage } from "../ui/blueMessage"
+import RegisterForm from "../ui/RegisterForm";
 
 export default function Page() {
     return (
