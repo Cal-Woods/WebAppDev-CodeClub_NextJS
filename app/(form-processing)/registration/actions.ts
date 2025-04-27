@@ -3,12 +3,25 @@
 import { db } from "@vercel/postgres"
 import bcrypt from "bcryptjs"
 import { permanentRedirect, RedirectType } from "next/navigation"
+import { registrationSchema } from "./user-validation-schema"
 
 //Store database connection string
 const client = await db.connect()
 
-export async function handleSignUp(formData: FormData):Promise<void> {
-    
+export async function handleSignUp(formData: FormData) {
+    //Store registerSchema Zod object from neighbouring user-validation.ts file
+    const validated = registrationSchema.safeParse({
+        email:formData.get("email"),
+        password:formData.get("pass"),
+        confirmPassword:formData.get("repass")
+    });
+
+    //Check if validation was NOT a success
+    if(!validated.success) {
+        return {
+            errors: validated.error.flatten().fieldErrors,
+        };
+    }
 
     //Get all submitted data as string values
     const username = formData.get("user") as string
@@ -20,7 +33,7 @@ export async function handleSignUp(formData: FormData):Promise<void> {
     const dob = formData.get("dob") as string
     const interest = formData.get("interest") as string
 
-    //Validate form data - if any formData is null or undefined
+    //Validate form data - if any formData is null or undefined, then redirect to web app root route
     if(!username || !pass || !repass || !fName || !lName || !email || !dob || !interest) {
         permanentRedirect("/", RedirectType.push)
     }
