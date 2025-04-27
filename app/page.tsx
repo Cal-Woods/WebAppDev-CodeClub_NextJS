@@ -1,15 +1,12 @@
 import { BlueMessage } from "./ui/blueMessage";
 import Card from "./ui/card";
-//import { cards } from "@/public/DB-Data/cards";
 
 //Import array that contains results of function to get data from database
 import { homeCardData } from "@/public/DB-Data/database-content";
+
 import { ChristmasWindow } from "./ui/christmasWindow";
 
 export default async function Page() {
-  //const data = await fetchHomeCardData();
-  //Store 'fetchHomeCardData() function ^ to get db carddata
-
   //Check if data is null
   if(homeCardData == null) return(<p>There is no card data to show!</p>);
   
