@@ -4,6 +4,7 @@ import { CCLgMenu, CCSmallMenu } from "./ui/adaptiveMenu";
 import Image from "next/image";
 import "./globals.css";
 import { menuData } from "@/public/DB-Data/database-content";
+import LoginReg from "./ui/LoginRegLink";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased max-h-[4000px] h-[800px] sm:bg-blue-900 md:bg-orange-500 bg-green-600 lg:bg-cyan-900`}>
         <Image alt="The codeclub logo" className="block float-left mb-[20px]" src="/Images/code_club_logo.jpg" width={50} height={50} />
+        <LoginReg />
         {children}
       </body>
     </html>
@@ -45,6 +47,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased max-h-[4000px] h-[800px] sm:bg-blue-900 md:bg-orange-500 bg-green-600 lg:bg-cyan-900`}>
         <Image alt="The codeclub logo" className="block float-left mb-[20px]" src="/Images/code_club_logo.jpg" width={50} height={50} />
+        <LoginReg />
         <CCSmallMenu data={menuData}/>
         <CCLgMenu data={menuData}/>
         {children}
