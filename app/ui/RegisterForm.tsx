@@ -9,36 +9,36 @@ export default function RegisterForm() {
                     <legend aria-label="Personal Details" className="text-lg font-semibold underline mt-2 m-auto">Personal Details</legend>
 
                     <label htmlFor="firstName">First Name</label> <br />
-                    <input type="text" name="firstName" id="firstName" placeholder="Enter first name:" className="w-[90%] mt-2 border-2 border-black drop-shadow-sm"/> <br /> <br />
+                    <input type="text" name="firstName" id="firstName" placeholder="Enter first name:" className="w-[90%] mt-2 border-2 border-black drop-shadow-sm" required/> <br /> <br />
 
-                    <label htmlFor="lastName" className="">Last Name</label> <br />
-                    <input type="text" name="lastName" id="lastName" placeholder="Enter last name" className="w-[90%] mt-2 border-2 border-black drop-shadow-sm"/> <br /> <br />
+                    <label htmlFor="lastName">Last Name</label> <br />
+                    <input type="text" name="lastName" id="lastName" placeholder="Enter last name" className="w-[90%] mt-2 border-2 border-black drop-shadow-sm" required/> <br /> <br />
 
                     <label htmlFor="date">Date of birth</label> <br />
-                    <input type="date" name="dob" id="date" className="w-[90%] mt-2 border-2 border-black drop-shadow-sm"/> <br /> <br />
+                    <input type="date" name="dob" id="date" className="w-[90%] mt-2 border-2 border-black drop-shadow-sm" required/> <br /> <br />
 
                     <label htmlFor="email">Email</label> <br />
-                    <input type="email" name="email" id="email" placeholder="Enter email address" className="mt-2 w-[90%] border-2 border-black drop-shadow-sm"></input> <br />
+                    <input type="email" name="email" id="email" placeholder="Enter email address" className="mt-2 w-[90%] border-2 border-black drop-shadow-sm" required></input> <br />
 
-                    <select aria-label="select area of interest" name="interest" id="interest" defaultValue="default" className="w-[90%] text-center border-2 drop-shadow-md border-black bg-blue-700">
+                    <select aria-label="select area of interest" name="interest" id="interest" defaultValue="default" className="w-[90%] mt-2 text-center border-2 drop-shadow-md border-black bg-blue-700" aria-required required>
                         <option value="default">Area of interest</option>
-                        <option value="scratch">Scratch</option>
-                        <option value="python">Python</option>
-                        <option value="web">Web</option>
+                        <option value="scratch" aria-label="Scratch">Scratch</option>
+                        <option value="python" aria-label="Python">Python</option>
+                        <option value="web" aria-label="Web">Web</option>
                     </select> <br />
                     </fieldset>
 
                     <fieldset className="border-2 border-dotted border-red-600">
                     <legend aria-label="username and password" className="text-lg font-semibold underline mt-2 m-auto">Username & Password</legend>
                     <label htmlFor="user">Username</label> <br />
-                    <input type="text" name="user" id="user" className="w-[90%] mt-2 border-black border-2"></input> <br />
+                    <input type="text" name="user" id="user" className="w-[90%] mt-2 border-black border-2" required></input> <br />
                     <label htmlFor="pass">Password</label> <br />
-                    <input type="password" name="pass" id="pass" autoComplete="false" className="w-[90%] mt-2 border-black border-2"></input> <br />
+                    <input type="password" name="pass" id="pass" autoComplete="false" className="w-[90%] mt-2 border-black border-2" required></input> <br />
                     <label htmlFor="repass">Re-type password</label> <br />
-                    <input type="password" name="repass" id="repass" autoComplete="false" className="w-[90%] mt-2 border-black border-2"></input> <br />
+                    <input type="password" name="repass" id="repass" autoComplete="false" className="w-[90%] mt-2 border-black border-2" required></input> <br />
                     </fieldset>
 
-                    <button name="reg_Submit" type="submit" className="w-[90%] border-2 border-black bg-slate-400 hover:bg-white active:bg-cyan-200 active:text-black">Submit details</button>
+                    <button name="reg_submit" type="submit" className="w-[90%] border-2 border-black bg-slate-400 hover:bg-white active:bg-cyan-200 active:text-black">Submit details</button>
                 </form>
             </div>
         </div>
