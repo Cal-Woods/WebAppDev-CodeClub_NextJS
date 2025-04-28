@@ -1,14 +1,15 @@
 'use server'
 
-import { db } from "@vercel/postgres"
+import { db, sql } from "@vercel/postgres"
 import bcrypt from "bcryptjs"
 import { permanentRedirect, RedirectType } from "next/navigation"
 import { registrationSchema } from "./user-validation-schema"
+import { userVerifyData } from "@/public/PropTypes/types"
 
 //Store database connection string
 const client = await db.connect()
 
-export async function handleSignUp(formData: FormData) {
+export async function handleSignUp(state: object|undefined, formData: FormData) {
     //Store registerSchema Zod object from neighbouring user-validation.ts file
     const validated = registrationSchema.safeParse({
         email:formData.get("email"),
@@ -20,6 +21,12 @@ export async function handleSignUp(formData: FormData) {
     if(!validated.success) {
         return {
             errors: validated.error.flatten().fieldErrors,
+            email: formData.get("email"),
+            fName: formData.get("firstName"),
+            lName: formData.get("lastName"),
+            dob: formData.get("dob"),
+            uName: formData.get("user"),
+            area: formData.get("interest")
         };
     }
 
@@ -48,6 +55,49 @@ export async function handleSignUp(formData: FormData) {
     )`
     await client.sql`COMMIT`
 
-
     return
+}
+
+//Server action to handle login
+export async function handleLogin(state: object|undefined, data:FormData) {
+    //Validation
+    if(data.get("username") == null || data.get("password") == null) {
+        return
+    }
+
+    //Declare a constant for each piece of data
+    const user = data.get("username") as string
+    //const pass = data.get("pass") as string
+
+    //Store result of looking up given username in db
+    const checkedUserName = await Promise.resolve(sql<userVerifyData>`SELECT username, password FROM user_info WHERE username = ${user}`)
+
+    //Check checkedUserName
+    if(checkedUserName.rowCount == null) {
+        throw new Error("Something bad happened while connecting to the database!");
+    }
+
+    if(checkedUserName.rowCount < 1) {
+        console.log("No matches!")
+        return {username:user, message:"There were no matches for that username!"};
+    }
+
+    //const compared = await Promise.resolve(bcrypt.compare(pass, checkedUserName.rows[0].password))
+
+    //Check hashed password against data
+    // if(await bcrypt.compare(pass, checkedUserName.rows[0].password)) {
+    //     console.log("Login successful!")
+
+    //     //Match was found so get details from db
+    //     const userDetails = await sql<userData>`SELECT (username, first_name, last_name, birth_date, email, account_type, primary_interest) FROM user_info WHERE username = ${user}`
+
+    //     console.log(userDetails)
+    //     //Put userData into session
+        
+    //     return {userName:user, message:"Login successful!"}
+    // }
+    // else {
+    //     console.log(pass.toString(), checkedUserName.rows[0].password)
+    //     return {userName:user, message: "Password was incorrect!"};
+    // }
 }
