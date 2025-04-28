@@ -1,7 +1,6 @@
 'use client'
 import { useActionState } from "react"
 import { handleSignUp } from "../(form-processing)/registration/actions"
-import { boolean } from "zod";
 
 export default function RegisterForm() {
     //Declare constant to use useActionState() hook for forms
