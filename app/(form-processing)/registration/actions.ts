@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs'
 import { permanentRedirect, RedirectType } from "next/navigation"
 import { registrationSchema } from "./user-validation-schema"
 import { userData, userVerifyData } from "@/public/PropTypes/types"
+import { cookies } from "next/headers"
 
 //Store database connection string
 const client = await db.connect()
@@ -60,14 +61,18 @@ export async function handleSignUp(state: object|undefined, formData: FormData) 
 
 //Server action to handle login
 export async function handleLogin(state: object|undefined, data:FormData) {
+    //Declare cookies to access cookies()
+    const cookieStore = await cookies()
+
     //Validation
     if(data.get("username") == null || data.get("password") == null) {
-        return
+        throw new Error('One or more fields is null!')
     }
 
     //Declare a constant for each piece of data
     const user = data.get("username") as string
-    const pass = data.get("pass")?.toString() as string
+    const pass = data.get("password") as string
+
 
     //Store result of looking up given username in db
     const checkedUserName = await Promise.resolve(sql<userVerifyData>`SELECT username, password FROM user_info WHERE username = ${user}`)
@@ -81,24 +86,29 @@ export async function handleLogin(state: object|undefined, data:FormData) {
         console.log("No matches!")
         return {username:user, error:"There were no matches for that username!"};
     }
+
     //Store hashed password value
     const hashPass = checkedUserName.rows[0].password
     const compared = await bcrypt.compare(pass, hashPass)
 
     //Check hashed password against data
-    if(compared) {
+    if(compared == true) {
         console.log("Login successful!")
 
         //Match was found so get details from db
-        const userDetails = await sql<userData>`SELECT (username, first_name, last_name, birth_date, email, account_type, primary_interest) FROM user_info WHERE username = ${user}`
+        //const userDetails = await sql<userData>`SELECT (username, first_name, last_name, birth_date, email, account_type, primary_interest) FROM user_info WHERE username = ${user}`
 
-        console.log(userDetails)
-        //Put userData into session
-        
-        return {userName:user, message:"Login successful!"}
+        //Put userDetails into session
+        await cookieStore.set({
+            name:'authSession',
+            value:user,
+            expires:1000*60*60*24,
+            secure:true
+        })
+
+        return {message:"Login successful!"}
     }
     else {
-        console.log(pass.toString(), checkedUserName.rows[0].password)
-        return {userName:user, message: "Password was incorrect!"};
+        return {userName:user, error: "Password was incorrect!"};
     }
 }
