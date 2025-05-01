@@ -1,10 +1,10 @@
 'use server'
 
 import { db, sql } from "@vercel/postgres"
-import bcrypt from "bcryptjs"
+import bcrypt from 'bcrypt'
 import { permanentRedirect, RedirectType } from "next/navigation"
 import { registrationSchema } from "./user-validation-schema"
-import { userVerifyData } from "@/public/PropTypes/types"
+import { userData, userVerifyData } from "@/public/PropTypes/types"
 
 //Store database connection string
 const client = await db.connect()
@@ -67,7 +67,7 @@ export async function handleLogin(state: object|undefined, data:FormData) {
 
     //Declare a constant for each piece of data
     const user = data.get("username") as string
-    //const pass = data.get("pass") as string
+    const pass = data.get("pass")?.toString() as string
 
     //Store result of looking up given username in db
     const checkedUserName = await Promise.resolve(sql<userVerifyData>`SELECT username, password FROM user_info WHERE username = ${user}`)
@@ -79,25 +79,26 @@ export async function handleLogin(state: object|undefined, data:FormData) {
 
     if(checkedUserName.rowCount < 1) {
         console.log("No matches!")
-        return {username:user, message:"There were no matches for that username!"};
+        return {username:user, error:"There were no matches for that username!"};
     }
-
-    //const compared = await Promise.resolve(bcrypt.compare(pass, checkedUserName.rows[0].password))
+    //Store hashed password value
+    const hashPass = checkedUserName.rows[0].password
+    const compared = await bcrypt.compare(pass, hashPass)
 
     //Check hashed password against data
-    // if(await bcrypt.compare(pass, checkedUserName.rows[0].password)) {
-    //     console.log("Login successful!")
+    if(compared) {
+        console.log("Login successful!")
 
-    //     //Match was found so get details from db
-    //     const userDetails = await sql<userData>`SELECT (username, first_name, last_name, birth_date, email, account_type, primary_interest) FROM user_info WHERE username = ${user}`
+        //Match was found so get details from db
+        const userDetails = await sql<userData>`SELECT (username, first_name, last_name, birth_date, email, account_type, primary_interest) FROM user_info WHERE username = ${user}`
 
-    //     console.log(userDetails)
-    //     //Put userData into session
+        console.log(userDetails)
+        //Put userData into session
         
-    //     return {userName:user, message:"Login successful!"}
-    // }
-    // else {
-    //     console.log(pass.toString(), checkedUserName.rows[0].password)
-    //     return {userName:user, message: "Password was incorrect!"};
-    // }
+        return {userName:user, message:"Login successful!"}
+    }
+    else {
+        console.log(pass.toString(), checkedUserName.rows[0].password)
+        return {userName:user, message: "Password was incorrect!"};
+    }
 }
