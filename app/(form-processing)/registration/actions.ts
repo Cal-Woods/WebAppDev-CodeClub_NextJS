@@ -1,7 +1,7 @@
 'use server'
 
 import { db, sql } from "@vercel/postgres"
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { permanentRedirect, RedirectType } from "next/navigation"
 import { registrationSchema } from "./user-validation-schema"
 import { userData, userVerifyData } from "@/public/PropTypes/types"

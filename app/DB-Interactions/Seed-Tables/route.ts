@@ -1,7 +1,8 @@
 import { cards, menuData } from "@/public/DB-Data/data-inserts";
 import { db } from "@vercel/postgres";
 import { userInfo } from "../(User-DB)/placeholder-user-info";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
+
 
 
 //Declare constant variable for db connection
