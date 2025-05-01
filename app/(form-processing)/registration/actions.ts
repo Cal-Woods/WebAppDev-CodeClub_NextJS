@@ -96,16 +96,46 @@ export async function handleLogin(state: object|undefined, data:FormData) {
         console.log("Login successful!")
 
         //Match was found so get details from db
-        //const userDetails = await sql<userData>`SELECT (username, first_name, last_name, birth_date, email, account_type, primary_interest) FROM user_info WHERE username = ${user}`
+        const userDetails = await sql<userData>`SELECT (username, first_name, last_name, birth_date, email, account_type, primary_interest) FROM user_info WHERE username = ${user}`
 
         //Put userDetails into session
         await cookieStore.set({
-            name:'authSession',
-            value:user,
+            name:'authSessionUser',
+            value:userDetails.rows[0].username,
             expires:1000*60*60*24,
             secure:true
         })
-
+        await cookieStore.set({
+            name:'authSessionType',
+            value:userDetails.rows[0].type,
+            expires:1000*60*60*24,
+            secure:true
+        })
+        await cookieStore.set({
+            name:'authSessionfName',
+            value:userDetails.rows[0].fName,
+            expires:1000*60*60*24,
+            secure:true
+        })
+        await cookieStore.set({
+            name:'authSessionlName',
+            value:userDetails.rows[0].lName,
+            expires:1000*60*60*24,
+            secure:true
+        })
+        await cookieStore.set({
+            name:'authSessionInterest',
+            value:userDetails.rows[0].interest,
+            expires:1000*60*60*24,
+            secure:true
+        })
+        await cookieStore.set({
+            name:'authSessionDob',
+            value:userDetails.rows[0].dob.toDateString(),
+            expires:1000*60*60*24,
+            secure:true
+        })
+        
         return {message:"Login successful!"}
     }
     else {
