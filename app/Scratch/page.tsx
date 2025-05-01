@@ -1,12 +1,10 @@
-import { cookies } from "next/headers";
+
 import { fetchScratchCardData } from "../../public/DB-Data/Fetch-Cards/data";
 import { BlueMessage } from "../ui/blueMessage";
 import Card from "../ui/card";
 
 export default async function Page() {
-  //Get cookies
-  const cookieStore = await cookies()
-  
+
   //Store card fetch data from db
   const data = await fetchScratchCardData();
 

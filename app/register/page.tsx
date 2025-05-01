@@ -1,9 +1,8 @@
-import { cookies } from "next/headers";
+
 import { BlueMessage } from "../ui/blueMessage"
 import RegisterForm from "../ui/RegisterForm";
 
 export default async function Page() {
-  const cookieStore = await cookies()
   
     return (
       <div id="registration">

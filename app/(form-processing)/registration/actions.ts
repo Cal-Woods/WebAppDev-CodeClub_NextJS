@@ -10,6 +10,7 @@ import { cookies } from "next/headers"
 //Store database connection string
 const client = await db.connect()
 
+
 export async function handleSignUp(state: object|undefined, formData: FormData) {
     //Store registerSchema Zod object from neighbouring user-validation.ts file
     const validated = registrationSchema.safeParse({
@@ -61,8 +62,6 @@ export async function handleSignUp(state: object|undefined, formData: FormData) 
 
 //Server action to handle login
 export async function handleLogin(state: object|undefined, data:FormData) {
-    //Declare cookies to access cookies()
-    const cookieStore = await cookies()
 
     //Validation
     if(data.get("username") == null || data.get("password") == null) {
@@ -98,6 +97,8 @@ export async function handleLogin(state: object|undefined, data:FormData) {
         //Match was found so get details from db
         const userDetails = await sql<userData>`SELECT (username, first_name, last_name, birth_date, email, account_type, primary_interest) FROM user_info WHERE username = ${user}`
 
+        //Declare cookies to access cookies()
+        const cookieStore = await cookies()
         //Put userDetails into session
         await cookieStore.set({
             name:'authSessionUser',
