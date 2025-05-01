@@ -102,38 +102,37 @@ export async function handleLogin(state: object|undefined, data:FormData) {
         await cookieStore.set({
             name:'authSessionUser',
             value:userDetails.rows[0].username,
-            expires:1000*60*60*24,
-            secure:true
+            expires:(1000*60*60*24),
         })
         await cookieStore.set({
             name:'authSessionType',
             value:userDetails.rows[0].type,
             expires:1000*60*60*24,
-            secure:true
+ 
         })
         await cookieStore.set({
             name:'authSessionfName',
             value:userDetails.rows[0].fName,
             expires:1000*60*60*24,
-            secure:true
+             
         })
         await cookieStore.set({
             name:'authSessionlName',
             value:userDetails.rows[0].lName,
             expires:1000*60*60*24,
-            secure:true
+             
         })
         await cookieStore.set({
             name:'authSessionInterest',
             value:userDetails.rows[0].interest,
             expires:1000*60*60*24,
-            secure:true
+             
         })
         await cookieStore.set({
             name:'authSessionDob',
-            value:userDetails.rows[0].dob.toDateString(),
+            value:userDetails.rows[0].dob?.toDateString(),
             expires:1000*60*60*24,
-            secure:true
+             
         })
         
         return {message:"Login successful!"}

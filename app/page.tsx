@@ -5,8 +5,14 @@ import Card from "./ui/card";
 import { homeCardData } from "@/public/DB-Data/database-content";
 
 import { ChristmasWindow } from "./ui/christmasWindow";
+import { cookies } from "next/headers";
 
 export default async function Page() {
+  //Get cookies
+  const cookieStore = await cookies()
+  
+  //Print cookies
+  console.log(cookieStore.toString())
   //Check if data is null
   if(homeCardData == null) return(<p>There is no card data to show!</p>);
   
