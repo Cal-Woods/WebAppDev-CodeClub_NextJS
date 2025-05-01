@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@types/bcrypt':
+        specifier: ^5.0.2
+        version: 5.0.2
       '@vercel/postgres':
         specifier: ^0.10.0
         version: 0.10.0
@@ -370,6 +373,9 @@ packages:
 
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
+
+  '@types/bcrypt@5.0.2':
+    resolution: {integrity: sha512-6atioO8Y75fNcbmj0G7UjI9lXN2pQ/IGJ2FWT4a/btd0Lk9lQalHLKhkgKVZ3r+spnmWUKfbMi1GEe9wyHQfNQ==}
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
@@ -2246,6 +2252,10 @@ snapshots:
 
   '@tsconfig/node16@1.0.4':
     optional: true
+
+  '@types/bcrypt@5.0.2':
+    dependencies:
+      '@types/node': 20.17.10
 
   '@types/estree@1.0.6': {}
 
